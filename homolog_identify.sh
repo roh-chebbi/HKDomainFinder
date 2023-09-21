@@ -3,7 +3,7 @@
 query_file=$1
 subject_file=$2
 bed_file=$3
-outfile=$4
+output_file=$4
 
 file_name=$(basename "$2")
 org_name="${file_name%.*}"
@@ -20,11 +20,10 @@ do
 	'{if ($2<sstart && sstart<$3 && $2<send && send<$3) print $4}' $bed_file >> $genes_out 
 done < $blast_out
 
-uniq_genes=$(sort $genes_out | uniq)
-num_genes=$(echo $uniq_genes | wc -w)
+cat $genes_out | sort | uniq > $output_file
+num_genes=$(wc -l < $output_file)
 
-echo -e "Number of genes in $org_name is: $num_genes \n"
-echo $org_name $uniq_genes >> $outfile
+echo -e "Number of unique genes in $org_name is: $num_genes \n"
 
 rm $blast_out
 rm $genes_out
