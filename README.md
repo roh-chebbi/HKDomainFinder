@@ -10,8 +10,7 @@ This Bash script identifies genes containing homologous histidine kinase (HK) do
 
 ## Usage
 ```bash
-./homolog_identify.sh <query.faa> <subject.fna> <bedfile>
-<outfile>  
+./homolog_identify.sh <query.faa> <subject.fna> <bedfile> <outfile>  
 ```
 
 ## Example
